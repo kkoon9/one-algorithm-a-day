@@ -3,7 +3,6 @@ package baekjoon._11000._11047_greedy;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -11,21 +10,24 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long answer = 0L;
+        int answer = 0;
         st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        int presentPrice = K;
 
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        int[] arr = new int[N];
         for (int i = 0; i < N; i++) {
-            pq.add(Integer.parseInt(br.readLine()));
+            arr[i] = Integer.parseInt(br.readLine());
         }
 
-        while(pq.size() >= 2) {
-            int first = pq.poll();
-            int second = pq.poll();
-            int sum = first + second;
-            answer += sum;
-            pq.add(sum);
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int num = arr[i];
+            if (presentPrice == 0) break;
+            while (presentPrice >= num) {
+                presentPrice -= num;
+                answer++;
+            }
         }
         System.out.println(answer);
     }
