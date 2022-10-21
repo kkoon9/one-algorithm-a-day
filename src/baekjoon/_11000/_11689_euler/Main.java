@@ -10,7 +10,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         long N = Long.parseLong(br.readLine());
-        long result = N;
+        long result   = N;
 
         for(long p = 2; p <=Math.sqrt(N); p++) {
             if (N % p == 0) {
